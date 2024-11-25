@@ -1,0 +1,24 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "attendance/client/package.json",
+        "use": "@vercel/react"
+      },
+      {
+        "src": "attendance/server/index.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "attendance/client/$1"
+      },
+      {
+        "src": "/api/(.*)",
+        "dest": "attendance/server/$1"
+      }
+    ]
+  }
+  
