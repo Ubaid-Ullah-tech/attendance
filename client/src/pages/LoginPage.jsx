@@ -7,11 +7,22 @@ import { toast } from 'react-toastify';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    // Basic validation
+    if (!email || !password) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    setLoading(true); // Set loading state to true while waiting for response
+
     try {
+      // Sending login request to backend
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
         { email, password }
@@ -19,11 +30,11 @@ const LoginPage = () => {
 
       const { token, user } = res.data;
 
-      // Save token and user details
+      // Save token and user details in localStorage
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
 
-      toast.success('Login Successfully');
+      toast.success('Login Successful');
 
       // Redirect based on user role
       if (user.role === 'admin') {
@@ -33,6 +44,8 @@ const LoginPage = () => {
       }
     } catch (err) {
       console.error(err);
+      setLoading(false); // Reset loading state on error
+
       // Display error message from backend
       const errorMsg = err.response?.data?.msg || 'Login failed. Please try again.';
       toast.error(errorMsg);
@@ -88,8 +101,8 @@ const LoginPage = () => {
               />
             </Grid>
           </Grid>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Login
+          <Button type="submit" variant="contained" color="primary" fullWidth disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
           </Button>
         </form>
         <p className="pt-5 mb-4">Don't have an account? Please Register.</p>
