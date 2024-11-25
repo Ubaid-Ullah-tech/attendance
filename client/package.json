@@ -8,7 +8,7 @@
   "build": "vite build",
   "lint": "eslint .",
   "preview": "vite preview",
-  "deploy": "cross-env VITE_API_URL=https://server-9nb1plukh-react-dveloper.vercel.app vite build"
+  "deploy": "cross-env VITE_API_URL=https://attendance-two-sable.vercel.app/?vercelToolbarCode=2zQY3bkZ07ku0nU"
 },
 
   "dependencies": {
