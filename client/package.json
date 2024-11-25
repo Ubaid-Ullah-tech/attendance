@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "cross-env VITE_API_URL=https://attendance-gu3d.vercel.app vite", 
+  "dev": "cross-env VITE_API_URL=https://attendance-gu3d.vercel.app vite",
   "build": "vite build",
   "lint": "eslint .",
   "preview": "vite preview",
-  "deploy": "cross-env VITE_API_URL=https://attendance-cmtojua66-react-dveloper.vercel.app/?vercelToolbarCode=b8TxLkxXtc23SZF"
+  "deploy": "cross-env VITE_API_URL=https://attendance-gu3d.vercel.app vite"
 },
+
 
   "dependencies": {
     "@emotion/react": "^11.13.3",
